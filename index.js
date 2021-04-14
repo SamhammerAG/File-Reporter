@@ -25,7 +25,12 @@ if (body) {
         repo: repo.split("/")[1],
         commit_sha: process.env.GITHUB_SHA,
         body: body,
-    });
+    })
+    .then(() => core.info(`${files.length} reported!`))
+    .catch((error => {
+        core.error("Reporting failed!");
+        core.error(error);
+    }));
 } else {
     core.info("Nothing to report.");
 }
