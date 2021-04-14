@@ -3,29 +3,29 @@ const fs = require("fs");
 const github = require('@actions/github');
 const core = require("@actions/core");
 
-/* github.getOctokit("").repos.createCommitComment({
-    owner: "",
-    repo: "",
-    commit_sha: "",
-    body: ""
-});*/
-
-const commit = process.env.GITHUB_SHA;
-const repo = process.env.GITHUB_REPOSITORY;
-
-const owner = repo.split("/")[0];
-const repoName = repo.split("/")[1];
-
-core.info(owner);
-core.info(repoName);
-
 const folderPath = path.join("./", core.getInput("folderPath"));
-
 const files = fs.readdirSync(folderPath)
+
+let body;
 
 files.forEach(name => {
     const filePath = path.join(folderPath, name);
+    const content = fs.readFileSync(filePath);
 
-    core.info(filePath);
-    core.info(fs.readFileSync(filePath));
+    if (content) {
+        body = body + $`<details><summary>${name}</summary>${content}</details>`;
+    }
 });
+
+if (body) {
+    const repo = process.env.GITHUB_REPOSITORY;
+
+    github.getOctokit(process.env.GITHUB_TOKEN).repos.createCommitComment({
+        owner: repo.split("/")[0],
+        repo: repo.split("/")[1],
+        commit_sha: process.env.GITHUB_SHA,
+        body: body
+    });
+} else {
+    core.info("Nothing to report.");
+}
