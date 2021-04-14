@@ -1,0 +1,12 @@
+name: "File-Reporter"
+description: "Add file content as comment to commit"
+branding:
+  icon: check-circle
+  color: blue
+inputs:
+  folderPath:
+    description: "Path to files"
+    required: true
+runs:
+  using: node12
+  main: index.js
