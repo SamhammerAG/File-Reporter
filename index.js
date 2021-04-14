@@ -13,7 +13,7 @@ files.forEach(name => {
     const content = fs.readFileSync(filePath);
 
     if (content) {
-        body = body + $`<details><summary>${name}</summary>${content}</details>`;
+        body = body + `<details><summary>${name}</summary>${content}</details>`;
     }
 });
 
