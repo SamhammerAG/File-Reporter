@@ -20,11 +20,11 @@ files.forEach(name => {
 if (body) {
     const repo = process.env.GITHUB_REPOSITORY;
 
-    github.getOctokit(process.env.GITHUB_TOKEN).repos.createCommitComment({
+    github.getOctokit(core.getInput("token")).repos.createCommitComment({
         owner: repo.split("/")[0],
         repo: repo.split("/")[1],
         commit_sha: process.env.GITHUB_SHA,
-        body: body
+        body: body,
     });
 } else {
     core.info("Nothing to report.");
