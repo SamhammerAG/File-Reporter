@@ -10,19 +10,22 @@ const core = require("@actions/core");
     body: ""
 });*/
 
-const repo = process.env.GITHUB_REPOSITORY;
 const commit = process.env.GITHUB_SHA;
+const repo = process.env.GITHUB_REPOSITORY;
 
-core.info(repo);
-core.info(commit);
+const owner = repo.split("/")[0];
+const repoName = repo.split("/")[1];
+
+core.info(owner);
+core.info(repoName);
 
 const folderPath = path.join("./", core.getInput("folderPath"));
 
 const files = fs.readdirSync(folderPath)
 
 files.forEach(name => {
-    const test = path.join(folderPath, name);
+    const filePath = path.join(folderPath, name);
 
-    core.info(test);
-    core.info(fs.readFileSync(test));
+    core.info(filePath);
+    core.info(fs.readFileSync(filePath));
 });
