@@ -21,8 +21,8 @@ const folderPath = path.join("./", core.getInput("folderPath"));
 const files = fs.readdirSync(folderPath)
 
 files.forEach(name => {
-    const path = path.join(folderPath, name);
+    const test = path.join(folderPath, name);
 
-    core.info(path);
-    core.info(fs.readFileSync(path));
+    core.info(test);
+    core.info(fs.readFileSync(test));
 });
