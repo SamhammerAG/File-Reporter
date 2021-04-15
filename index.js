@@ -6,7 +6,7 @@ const core = require("@actions/core");
 const folderPath = path.join("./", core.getInput("folderPath"));
 const files = fs.readdirSync(folderPath)
 
-let body;
+let body = "";
 
 files.forEach(name => {
     const filePath = path.join(folderPath, name);
@@ -27,7 +27,7 @@ if (body) {
         commit_sha: process.env.GITHUB_SHA,
         body: body,
     })
-    .then(() => core.info(`${files.length} reported!`))
+    .then(() => core.info(`${files.length} files reported!`))
     .catch((error => {
         core.error("Reporting failed!");
         core.error(error);
