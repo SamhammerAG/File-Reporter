@@ -6055,8 +6055,9 @@ files.forEach(name => {
     const filePath = path.join(folderPath, name);
     const content = fs.readFileSync(filePath);
 
-    if (content) {
-        body = body + `<details><summary>${name}</summary>${content}</details>`;
+    if (content.trim) {
+        // Markdown only works with empty line
+        body = body + `<details><summary>${name}</summary>\n\n${"```"}${content}${"```"}</details>`;
     }
 });
 
