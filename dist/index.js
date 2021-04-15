@@ -6061,9 +6061,10 @@ files.forEach(name => {
 });
 
 if (body) {
+    const rest = github.getOctokit(core.getInput("token"));
     const repo = process.env.GITHUB_REPOSITORY;
 
-    github.getOctokit(core.getInput("token")).repos.createCommitComment({
+    rest.repos.createCommitComment({
         owner: repo.split("/")[0],
         repo: repo.split("/")[1],
         commit_sha: process.env.GITHUB_SHA,
