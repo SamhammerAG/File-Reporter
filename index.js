@@ -12,7 +12,7 @@ files.forEach(name => {
     const filePath = path.join(folderPath, name);
     const content = fs.readFileSync(filePath);
 
-    if (content.trim) {
+    if (content.toString().trim()) {
         // Markdown only works with empty line
         body = body + `<details><summary>${name}</summary>\n\n${"```"}${content}${"```"}</details>`;
     }
