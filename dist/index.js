@@ -6057,7 +6057,7 @@ files.forEach(name => {
 
     if (content.toString().trim()) {
         // Markdown only works with empty line
-        body = body + `<details><summary>${name}</summary>\n\n${"```"}${content}${"```"}</details>`;
+        body = body + `<details><summary>${name}</summary>\n\n${"```"}${content}${"```"}\n</details>`;
     }
 });
 
