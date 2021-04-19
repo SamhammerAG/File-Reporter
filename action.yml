@@ -9,7 +9,8 @@ inputs:
     required: true
   token:
     description: "Token"
-    required: true
+    required: false
+    default: ${{ secrets.GITHUB_TOKEN }}
 runs:
   using: node12
   main: dist/index.js
