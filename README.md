@@ -14,3 +14,6 @@ jobs:
           folderPath: example1/files/
           token: ${{ secrets.GITHUB_TOKEN }}
 ```
+
+## Example
+![image](https://user-images.githubusercontent.com/16338782/115267690-c24d8480-a139-11eb-837f-f0e4451fcfb3.png)
